@@ -1,0 +1,567 @@
+
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SiYanduKul - Sistem Informasi Pos Pelayanan Terpadu Puskesmas Sumakul</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- AOS - Animate on Scroll -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #007bff;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .header {
+            background-color: #007bff;
+            background-image: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .nav-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-card .card-img-top {
+            height: 160px;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-img-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .card-title {
+            font-weight: 600;
+        }
+        
+        .laporan-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 600"><rect fill="%23007bff" width="800" height="600"/><g fill-opacity="0.5" fill="%23FFF"><rect width="120" height="120" x="120" y="120"/><rect width="240" height="60" x="480" y="120"/><rect width="240" height="60" x="480" y="240"/><rect width="240" height="60" x="480" y="360"/><rect width="120" height="120" x="120" y="360"/></g></svg>');
+            background-color: var(--primary);
+        }
+        
+        .kartu-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 600"><rect fill="%2328a745" width="800" height="600"/><g fill-opacity="0.5" fill="%23FFF"><circle cx="400" cy="300" r="200"/><rect width="80" height="400" x="560" y="100"/><rect width="80" height="400" x="160" y="100"/></g></svg>');
+            background-color: var(--success);
+        }
+        
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+        
+        /* Desa Colors */
+        .sumakul-color { background-color: #4e73df; }
+        .pandanrejo-color { background-color: #1cc88a; }
+        .sempol-color { background-color: #f6c23e; }
+        .sumberkerto-color { background-color: #e74a3b; }
+        
+        /* Posyandu Link Cards */
+        .posyandu-link {
+            display: block;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: white;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #343a40;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .posyandu-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .desa-title {
+            padding: 0.5rem 1rem;
+            color: white;
+            border-radius: 8px;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+        }
+        
+        .back-button {
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-box {
+            margin-bottom: 2rem;
+        }
+        
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 99;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        #backToTop:hover {
+            background: #0056b3;
+        }
+        
+        /* Breadcrumb styling */
+        .breadcrumb {
+            background-color: transparent;
+            padding: 0.5rem 0;
+        }
+        
+        .breadcrumb-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            font-weight: 600;
+        }
+        
+        /* Main content container */
+        .content-container {
+            min-height: calc(100vh - 300px);
+        }
+        
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div class="loading" id="loadingOverlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <div id="backToTop" title="Kembali ke atas">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container text-center">
+            <h1 class="main-title" data-aos="fade-down">SiYanduKul</h1>
+            <p class="subtitle" data-aos="fade-up">Sistem Informasi Pos Pelayanan Terpadu Puskesmas Sumakul</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container content-container">
+        <!-- Home Page -->
+        <div id="homePage">
+            <div class="row">
+                <div class="col-md-6 mb-4" data-aos="fade-right">
+                    <div class="card nav-card" onclick="showPage('laporanPage')">
+                        <div class="card-img-top laporan-bg">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-white">Laporan ILP</h5>
+                                <p class="card-text text-white">Akses laporan untuk 4 desa di wilayah Puskesmas Sumakul</p>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">
+                                <i class="fas fa-file-alt me-1"></i> Laporan terstruktur per desa
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-left">
+                    <div class="card nav-card" onclick="showPage('kartuBantuPage')">
+                        <div class="card-img-top kartu-bg">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-white">Kartu Bantu Posyandu ILP</h5>
+                                <p class="card-text text-white">Akses 30 Kartu Bantu Posyandu dari 4 desa</p>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">
+                                <i class="fas fa-clipboard-list me-1"></i> Dikelompokkan per desa
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Laporan Page -->
+        <div id="laporanPage" style="display: none;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" onclick="showPage('homePage')">Beranda</a></li>
+                    <li class="breadcrumb-item active">Laporan ILP</li>
+                </ol>
+            </nav>
+            
+            <div class="back-button">
+                <button class="btn btn-outline-primary btn-sm" onclick="showPage('homePage')">
+                    <i class="fas fa-arrow-left me-1"></i> Kembali
+                </button>
+            </div>
+            
+            <h2 class="mb-4" data-aos="fade-right">Laporan ILP</h2>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card sumakul-color text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Sumbermanjing Kulon</h5>
+                            <p class="card-text">Laporan Posyandu Desa Sumbermanjing Kulon</p>
+                            <a href="#" class="btn btn-light btn-sm">Lihat Laporan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card pandanrejo-color text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Pandanrejo</h5>
+                            <p class="card-text">Laporan Posyandu Desa Pandanrejo</p>
+                            <a href="#" class="btn btn-light btn-sm">Lihat Laporan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card sempol-color text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Sempol</h5>
+                            <p class="card-text">Laporan Posyandu Desa Sempol</p>
+                            <a href="#" class="btn btn-light btn-sm">Lihat Laporan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card sumberkerto-color text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Sumberkerto</h5>
+                            <p class="card-text">Laporan Posyandu Desa Sumberkerto</p>
+                            <a href="#" class="btn btn-light btn-sm">Lihat Laporan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kartu Bantu Page -->
+        <div id="kartuBantuPage" style="display: none;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" onclick="showPage('homePage')">Beranda</a></li>
+                    <li class="breadcrumb-item active">Kartu Bantu Posyandu ILP</li>
+                </ol>
+            </nav>
+            
+            <div class="back-button">
+                <button class="btn btn-outline-primary btn-sm" onclick="showPage('homePage')">
+                    <i class="fas fa-arrow-left me-1"></i> Kembali
+                </button>
+            </div>
+            
+            <h2 class="mb-4" data-aos="fade-right">Kartu Bantu Posyandu ILP</h2>
+            
+            <div class="search-box" data-aos="fade-up">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Cari Posyandu...">
+                </div>
+            </div>
+            
+            <!-- Posyandu Links will be loaded via JavaScript -->
+            <div id="posyanduLinks">
+                <!-- Content will be loaded via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 SiYanduKul - Puskesmas Sumakul</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Sistem Informasi Pos Pelayanan Terpadu</p>
+                </div>
+            </div>
+        </div>
+</footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS - Animate On Scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script>
+        // Posyandu data structure
+        const posyanduData = {
+            "Sumbermanjing Kulon": [
+                { name: "BPU", url: "https://script.google.com/macros/s/AKfycbzLBKZ9-tTEy4VgqtTUtDTnSV9SyOCVpKSQvdRE57lDLHbewK7e1XyKEixclJ6Otjbm9Q/exec" },
+                { name: "Binaputra", url: "https://script.google.com/macros/s/AKfycbzhKXOlC5qtfocSXGvj_UkRHdVY_u8EksP_VnlpChpjAtDqjOAmLbjqu_VVp5eZFsifyA/exec" },
+                { name: "Brongkalan", url: "https://script.google.com/macros/s/AKfycbzjey0GLfwguhaKerK1xGiWak4RawOraL2UUnHUcaUAGefHkI2n5Zsvg7Itl3QfugZk/exec" },
+                { name: "Bu Kanti", url: "https://script.google.com/macros/s/AKfycbyJnBDDXwHvPViloNAqRHE7CVW4DqO9kJEE-Nig1mA7l3ynCwawVKeWRYcHGW5Ub5g/exec" },
+                { name: "Bu Musini", url: "https://script.google.com/macros/s/AKfycbzkM9U6se9wtSm8r0ngWPAbyHQgz37hRKbzUvqBH5HFFK4RDCXNx9LDfUUmMjweySNqNA/exec" },
+                { name: "Bu Suwarni", url: "https://script.google.com/macros/s/AKfycbxzD-luzszQHZR5vWfBt51GpviWj9MIDuppwhGZOKLbj5kQ6sJ_LEWYmhnb74ftqc2P/exec" },
+                { name: "Kalicilik", url: "https://script.google.com/macros/s/AKfycbwoYftYcuVeRkPUxb5gGWZ9pXCTJHO-DpjAphc_7PVPhWeGZ3klAfq7lrnAkBk2kOmr/exec" },
+                { name: "Kampung Penjara", url: "https://script.google.com/macros/s/AKfycbxjJe818PxDWLWk-Eub80fKOBJ-k5zyP_EMm3YDq7bDj0bBlggs769FQUpl5auxNaFa/exec" },
+                { name: "Pak Iksan", url: "https://script.google.com/macros/s/AKfycbxtxYy3RP35MgjQ2G1PU_E0sXVLF1gGIrKaegnYoFMEspK-7N2PmykonJERkpttW_Bp/exec" },
+                { name: "Pak Nuryono", url: "https://script.google.com/macros/s/AKfycbw1d-b5smlndKfxDFHNI0Hw9gI9cvZJ8pcPX3hdB0lJPKGr2iGhluRDi0xbn03hoonnZA/exec" },
+                { name: "Tanjungsari", url: "https://script.google.com/macros/s/AKfycbx6eMS9cRykv3rAUPt4TuswYx9JqQ2Phe4Y7Dox5ReTOnJHqedTMKBoWHJlHkmyoUgk/exec" }
+            ],
+            "Pandanrejo": [
+                { name: "Dahlia", url: "https://script.google.com/macros/s/AKfycby1LjCx3ru-BfvYaFjYWTSiiW33FXHA8wyZaA08siRXR42rHwehX_y1or5hebb1pM0/exec" },
+                { name: "Karangrejo", url: "https://script.google.com/macros/s/AKfycbwfaWuhoOw4-WFbE5c8HRHvn5SYoA3bQMdSAD-1TJ7VnlsEgXVubgJ_kvxZUv2GzYvp/exec" },
+                { name: "Krajan", url: "https://script.google.com/macros/s/AKfycbyUh21cQmsNWN0Qt0f-e6hwTuAWVOIr0byUuKqGTNRY-U2P00cbbY55I1nOdhnrVVFp2Q/exec" },
+                { name: "Pak Sleman", url: "https://script.google.com/macros/s/AKfycbwftaRzuPC2ZxUE6pIFaZDkQuKwMplcaEEsqdHxf2NBPwZijC064jw2jsiJUdmVglCaHQ/exec" },
+                { name: "Sumbersuruh", url: "https://script.google.com/macros/s/AKfycbw-naHOlk3QcVp8LThjpUaM9XmbOSHa4bh9INRzmrxgu8dzM_4Bb7dGJGt3hDmMPxmZPA/exec" }
+            ],
+            "Sempol": [
+                { name: "Banduroto", url: "https://script.google.com/macros/s/AKfycbxdGDKIzXjWFsWrQSuZccXJSAJsDLZSacQjWHxCl3j3g_dl4TJrEx5KULuSTX74FPt0/exec" },
+                { name: "Boroan", url: "https://script.google.com/macros/s/AKfycbxYKHykEmWVtQMlOQf3YzUuwVCXn7KAJoXt47o91eUMRPUpHXzoiIrdqH_AlWAcID4OJw/exec" },
+                { name: "Bougenville", url: "https://script.google.com/macros/s/AKfycbzA_OxmoL1tKNbYS9RBEY5G_0cHQNalQn-BGSaTYQ8lAfk4GrcqzabEw8XK3SXzd78Ryg/exec" },
+                { name: "Crabaan I", url: "https://script.google.com/macros/s/AKfycbwFLgb3SBmE8-UNgQyAJD1IjORkQFFr8CCVv35Zc9Lin9poVhy7P8rJhfwNMxrvSAySuw/exec" },
+                { name: "Crabaan II", url: "https://script.google.com/macros/s/AKfycbw91t1YO7lFv9KQGSXxiGdp77GrQd0garPaRWgercCzZLbyqI4G8cOsx5c3LaGuGNeq/exec" },
+                { name: "Gunung Remuk", url: "https://script.google.com/macros/s/AKfycbyFusu8lMjKBwpuLFTAEWcHlkH6W-8cwETGslqS3CY3zmn_H6FvUXjYbzdP_2HJjkRN/exec" },
+                { name: "Karang Jambe", url: "https://script.google.com/macros/s/AKfycbxAGFl4JwVRZKBQG8K51kQB_bCwrzgmn724ZL-ITb5O64m1sPkheNl3KKlwOR5qPLzE/exec" },
+                { name: "Krajan I", url: "https://script.google.com/macros/s/AKfycbwTwqmzb0mV9OjEQ579ZLHCaj31RnsXC0W2bLxbGDP7OnXU35adJmjJkhGzbYKRe3jn/exec" },
+                { name: "Krajan II", url: "https://script.google.com/macros/s/AKfycbw-KH9Ik2U3lV_Tk7JZeHDCprPRQN0WgoGUn6FZ5DdHwSTUMi1Ss5PLA7IcsKeILC78YA/exec" }
+            ],
+            "Sumberkerto": [
+                { name: "Kaligading", url: "https://script.google.com/macros/s/AKfycbz-vIQsQe5fr2XnjL0M9FBdY0_H4OCRSTitM_1KDyt5wQHkU5au1YracpydclPwnS5F/exec" },
+                { name: "Krajan", url: "https://script.google.com/macros/s/AKfycbx2-jUc7p7h5R1fS5yXHHsTyOHcTOEIMs8cwFTf83JJjp0QfJuxDRJaFqRNAyeT3HL5CQ/exec" },
+                { name: "Sumberwader", url: "https://script.google.com/macros/s/AKfycbyoj3pU7OdXCKHRHBDJdBHnpSvkN7vY70c9uzyXR1STF8i9CRRGriti6pIOZFKBbc-DKQ/exec" },
+                { name: "Tetelan I", url: "https://script.google.com/macros/s/AKfycbzAMlgOsF9sZBs7KLoQ9Y7hbzu5Nc9e1e_aXrdIWiXmIv44jDL3W3WStk7z2xrfCiTFdw/exec" },
+                { name: "Tetelan II", url: "https://script.google.com/macros/s/AKfycbw1wG9j08X_jY4xPihUzp8qqYhx2j6mupHT63stM5AzkBo5T81nrpx85hub1mPkVRVW/exec" }
+            ]
+        };
+
+        // Color mapping for desa
+        const desaColorClasses = {
+            "Sumbermanjing Kulon": "sumakul-color",
+            "Pandanrejo": "pandanrejo-color",
+            "Sempol": "sempol-color", 
+            "Sumberkerto": "sumberkerto-color"
+        };
+
+        // Document ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false
+            });
+            
+            // Generate Posyandu links
+            generatePosyanduLinks();
+            
+            // Initialize search functionality
+            initSearch();
+            
+            // Add back to top button functionality
+            initBackToTop();
+            
+            // Hide loading overlay after page loads
+            setTimeout(function() {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }, 500);
+        });
+
+        // Function to show/hide pages
+        function showPage(pageId) {
+            // Hide all pages first
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('laporanPage').style.display = 'none';
+            document.getElementById('kartuBantuPage').style.display = 'none';
+            
+            // Show the requested page
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Refresh AOS animations
+            AOS.refresh();
+        }
+
+        // Generate Posyandu links
+        function generatePosyanduLinks() {
+            const container = document.getElementById('posyanduLinks');
+            let content = '';
+            
+            // Loop through each desa
+            for (const desa in posyanduData) {
+                content += `<h4 class="desa-title ${desaColorClasses[desa]}" data-aos="fade-right">${desa}</h4>`;
+                content += '<div data-aos="fade-up">';
+                
+                // Loop through each posyandu in the desa
+                posyanduData[desa].forEach(posyandu => {
+                    content += `
+                        <a href="${posyandu.url}" class="posyandu-link" target="_blank" data-desa="${desa}">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="fas fa-clinic-medical me-2"></i>
+                                    <strong>Posyandu ${posyandu.name}</strong>
+                                </div>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                    `;
+                });
+                
+                content += '</div>';
+            }
+            
+            // Insert the generated content
+            container.innerHTML = content;
+        }
+
+        // Initialize search functionality
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const posyanduLinks = document.querySelectorAll('.posyandu-link');
+                    
+                    posyanduLinks.forEach(link => {
+                        const text = link.textContent.toLowerCase();
+                        const desa = link.dataset.desa.toLowerCase();
+                        
+                        if (text.includes(searchTerm) || desa.includes(searchTerm)) {
+                            link.style.display = 'block';
+                        } else {
+                            link.style.display = 'none';
+                        }
+                    });
+                    
+                    // Check if desa titles should be hidden (when all posyandu in that desa are hidden)
+                    const desaTitles = document.querySelectorAll('.desa-title');
+                    desaTitles.forEach(title => {
+                        const desa = title.textContent;
+                        const desaLinks = document.querySelectorAll(`.posyandu-link[data-desa="${desa}"]`);
+                        
+                        let allHidden = true;
+                        desaLinks.forEach(link => {
+                            if (link.style.display !== 'none') {
+                                allHidden = false;
+                            }
+                        });
+                        
+                        if (allHidden) {
+                            title.style.display = 'none';
+                        } else {
+                            title.style.display = 'block';
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize back to top button
+        function initBackToTop() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+</html> 
