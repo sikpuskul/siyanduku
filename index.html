@@ -1,4 +1,3 @@
-
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -262,6 +261,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 mb-4" data-aos="fade-right">
+                    <div class="card nav-card" onclick="showPage('sigiziPage')">
+                        <div class="card-img-top laporan-bg">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-white">FORM SIGIZI</h5>
+                                <p class="card-text text-white">Akses Form Sigizi untuk 4 desa di wilayah Puskesmas Sumakul</p>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">
+                                <i class="fas fa-file-alt me-1"></i> Laporan terstruktur per desa
+                            </small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -321,7 +335,80 @@
                 </div>
             </div>
         </div>
-
+ <!-- Sigizi Page -->
+ <div id="sigiziPage" style="display: none;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" onclick="showPage('homePage')">Beranda</a></li>
+            <li class="breadcrumb-item active">FORM SIGIZI</li>
+        </ol>
+    </nav>
+    
+    <div class="back-button">
+        <button class="btn btn-outline-primary btn-sm" onclick="showPage('homePage')">
+            <i class="fas fa-arrow-left me-1"></i> Kembali
+        </button>
+    </div>
+    
+    <h2 class="mb-4" data-aos="fade-right">FORM SIGIZI</h2>
+    
+    <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="card sumakul-color text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Identitas Bumil</h5>
+                    <p class="card-text">FORM IDENTITAS BUMIL</p>
+                    <a href="https://bit.ly/FORM_IDENTITAS_BUMIL_PKMSUMAKUL" class="btn btn-light btn-sm" target="_blank" rel="nofollow noopener noreferrer">Lihat Form</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="card pandanrejo-color text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Laporan KIA</h5>
+                    <p class="card-text">Laporan KIA 2024</p>
+                    <a href="https://bit.ly/LAPORAN_KIA_2024_PKMSUMAKUL" class="btn btn-light btn-sm" target="_blank" rel="nofollow noopener noreferrer">Lihat Form</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="card sempol-color text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">SUMAKUL</h5>
+                    <p class="card-text">Form Pengukuran ANC</p>
+                    <a href="https://bit.ly/FORM_PENGUKURAN_ANCSUMAKUL" class="btn btn-light btn-sm" target="_blank" rel="nofollow noopener noreferrer">Lihat Laporan</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="card sempol-color text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">PANDANREJO</h5>
+                    <p class="card-text">Form Pengukuran ANC</p>
+                    <a href="https://bit.ly/FORM_UKUR_ANC_PANDANREJO" class="btn btn-light btn-sm" target="_blank" rel="nofollow noopener noreferrer">Lihat Laporan</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="card sempol-color text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">SEMPOL</h5>
+                    <p class="card-text">Form Pengukuran ANC</p>
+                    <a href="https://bit.ly/FORM_UKUR_ANC_SEMPOL" class="btn btn-light btn-sm" target="_blank" rel="nofollow noopener noreferrer">Lihat Laporan</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="card sempol-color text-white">
+                <div class="card-body text-center">
+                    <h5 class="card-title">SUMBERKERTO</h5>
+                    <p class="card-text">Form Pengukuran ANC</p>
+                    <a href="https://bit.ly/FORM_UKUR_AMC_SUMBERKERTO" class="btn btn-light btn-sm" target="_blank" rel="nofollow noopener noreferrer">Lihat Laporan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- Kartu Bantu Page -->
         <div id="kartuBantuPage" style="display: none;">
             <nav aria-label="breadcrumb">
@@ -352,7 +439,7 @@
             </div>
         </div>
     </div>
-
+   
     <!-- Footer -->
     <footer class="footer mt-5">
         <div class="container">
@@ -455,6 +542,7 @@
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('laporanPage').style.display = 'none';
             document.getElementById('kartuBantuPage').style.display = 'none';
+            document.getElementById('sigiziPage').style.display = 'none';
             
             // Show the requested page
             document.getElementById(pageId).style.display = 'block';
